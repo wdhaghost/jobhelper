@@ -18,6 +18,9 @@
                         Nom
                     </th>
                     <th class="px-5 py-3 bg-gray-50 text-gray-800 text-left text-sm uppercase font-medium">
+                        Prénom
+                    </th>
+                    <th class="px-5 py-3 bg-gray-50 text-gray-800 text-left text-sm uppercase font-medium">
                         Poste Recherché
                     </th>
                     <th class="px-5 py-3 bg-gray-50 text-gray-800 text-left text-sm uppercase font-medium">
@@ -35,13 +38,16 @@
                 @forelse ($profiles as $profile)
                     <tr class="border-b">
                         <td class="px-5 py-3 text-sm text-gray-800">
-                            {{ $profile->user->name }}
+                            {{ $profile->lastname }}
                         </td>
                         <td class="px-5 py-3 text-sm text-gray-800">
-                            {{ $profile->poste_recherche }}
+                            {{ $profile->firstname }}
                         </td>
                         <td class="px-5 py-3 text-sm text-gray-800">
-                            {{ implode(', ', $profile->competences) }}
+                            {{ $profile->job }}
+                        </td>
+                        <td class="px-5 py-3 text-sm text-gray-800">
+                            {{ $profile->skills }}
                         </td>
                         <td class="px-5 py-3 text-sm text-gray-800">
                             {{ $profile->experiences }}

@@ -22,46 +22,61 @@ class ProfileController extends Controller
      */
     public function create()
     {
-        //
+        return view('profile.create'); // Formulaire de création
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'firstname' => 'required|string|max:255',
+            'lastname' => 'required|string|max:255',
+            'job' => 'required|string|max:255',
+            'skills' => 'required|string',
+            'experiences' => 'required|string',
+        ]);
+        $profile = new Profile;
+        $profile->lastname = $request->lastname;
+        $profile->firstname = $request->firstname;
+        $profile->job = $request->job;
+        $profile->skills = $request->skills;
+        $profile->experiences = $request->experiences;
+        $profile->save();
+        return redirect()->route('profiles.index')->with('success', 'Profil créé avec succès !');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function show(Profile $profile)
     {
-        //
+        return view('profile.show', compact('profile'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function edit(Profile $profile)
     {
-        //
+        return view('profile.edit', compact('profile'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Profile $profile)
     {
-        //
+        $validated = $request->validate([
+            'firstname' => 'required|string|max:255',
+            'lastname' => 'required|string|max:255',
+            'job' => 'required|string|max:255',
+            'skills' => 'required|string',
+            'experiences' => 'required|string',
+        ]);
+
+        $profile->lastname = $request->lastname;
+        $profile->firstname = $request->firstname;
+        $profile->job = $request->job;
+        $profile->skills = $request->skills;
+        $profile->experiences = $request->experiences;
+        $profile->save();
+        return redirect()->route('profiles.index')->with('success', 'Profil mis à jour avec succès !');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    public function destroy(Profile $profile)
     {
-        //
+        $profile->delete();
+        return redirect()->route('profiles.index')->with('success', 'Profil supprimé avec succès !');
     }
+
 }

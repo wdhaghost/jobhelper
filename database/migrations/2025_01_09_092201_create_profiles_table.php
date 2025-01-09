@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('lastname');
             $table->string('job');
             $table->string('skills');
-            $table->string('Expériences');
+            $table->string('experiences');
             $table->timestamps();
         });
     }

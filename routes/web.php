@@ -7,7 +7,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::prefix('profiles')->group(function () {
+Route::prefix('profile')->group(function () {
     Route::get('/', [ProfileController::class, 'index'])->name('profiles.index'); // Liste des profils
     Route::get('/create', [ProfileController::class, 'create'])->name('profiles.create'); // Formulaire de création
     Route::post('/', [ProfileController::class, 'store'])->name('profiles.store'); // Enregistrement du profil
